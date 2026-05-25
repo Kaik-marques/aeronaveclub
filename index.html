@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroNaves - Pack STL de Aeronaves Premium</title>
+    <meta name="description"
+        content="A maior coleção de aeronaves STL para impressão 3D. Caças, helicópteros e aviões comerciais em alta definição.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.utmify.com.br">
+
+    <link rel="preload" as="image" href="assets/Mockup HeroNaves Premium.webp.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS responsivo do Modal de Upsell -->
+    <style>
+        .upsell-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            overflow-y: auto;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
+
+        .upsell-modal-content {
+            background: #111;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            border: 1px solid #333;
+            position: relative;
+            box-sizing: border-box;
+            margin: auto;
+        }
+
+        .upsell-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 28px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            transition: color 0.2s;
+        }
+
+        .upsell-modal-close:hover {
+            color: #fff;
+        }
+
+        .upsell-modal-badge {
+            background: #e0faec;
+            color: #00b050;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .upsell-modal-title {
+            color: #fff;
+            font-size: 1.5rem;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .upsell-modal-price-box {
+            background: #1a1a1a;
+            border: 1px dashed #444;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .upsell-modal-price-old {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.95rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .upsell-modal-price-new {
+            color: #00b050;
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        .upsell-modal-image {
+            width: 100%;
+            max-width: 130px;
+            margin: 0 auto 10px auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .upsell-modal-description {
+            color: #ccc;
+            font-size: 0.95rem;
+            margin: 0 0 20px 0;
+            line-height: 1.4;
+        }
+
+        .upsell-modal-btn-accept {
+            margin-bottom: 15px !important;
+            font-size: 1.1rem !important;
+            padding: 15px !important;
+            display: block;
+            text-decoration: none;
+        }
+
+        .upsell-modal-btn-decline {
+            color: #888;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            display: block;
+            margin-top: 10px;
+            transition: color 0.2s;
+        }
+
+        .upsell-modal-btn-decline:hover {
+            color: #ccc;
+        }
+
+        @media (max-width: 480px) {
+            .upsell-modal-content {
+                padding: 18px 15px 15px 15px;
+                border-radius: 12px;
+            }
+
+            .upsell-modal-close {
+                top: 6px;
+                right: 12px;
+                font-size: 24px;
+            }
+
+            .upsell-modal-badge {
+                font-size: 0.75rem;
+                padding: 3px 6px;
+                margin-bottom: 8px;
+            }
+
+            .upsell-modal-title {
+                font-size: 1.15rem;
+                margin-bottom: 6px;
+            }
+
+            .upsell-modal-price-box {
+                padding: 6px 12px;
+                margin-bottom: 8px;
+                border-radius: 6px;
+            }
+
+            .upsell-modal-price-old {
+                font-size: 0.8rem;
+            }
+
+            .upsell-modal-price-new {
+                font-size: 1.2rem;
+            }
+
+            .upsell-modal-image {
+                max-width: 110px;
+                margin-bottom: 8px;
+            }
+
+            .upsell-modal-description {
+                font-size: 0.78rem;
+                margin-bottom: 10px;
+                line-height: 1.3;
+            }
+
+            .upsell-modal-btn-accept {
+                margin-bottom: 8px !important;
+                font-size: 0.95rem !important;
+                padding: 10px !important;
+            }
+
+            .upsell-modal-btn-decline {
+                font-size: 0.78rem;
+                margin-top: 6px;
+            }
+        }
+
+        /* Estilo para as imagens das Provas Sociais editadas */
+        .social-proof-slide {
+            overflow: hidden;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .social-proof-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+    </style>
+
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- PIXEL META & UTMIFY -->
+    <!-- TOKEN META API: EAALftZAspfLUBRaJd4pUZAWEhnvTzEh8StAm5uU0sp1SXZAquZA7N4Pz4eNDWWMUObLFTgMB9iSia4THDMZApZCMyUO0qa7ewYtlj663d7UtiP0iCOVYP0Ddm4xEzVZBJXuMSCJnSblCWMnnCS6ipqZCvs8OSR66XscCKpAwAgax1g9FwrUP6loEZBOZAMpHvhgspZAZCgZDZD -->
+
+    <!-- Meta Pixel + Invisible Ghost Tracking - LeadFlow -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1455024295909896');
+        fbq('track', 'PageView');
+
+        (function () {
+            function encodeToInvisible(text) {
+                var binary = "";
+                for (var i = 0; i < text.length; i++) {
+                    var bin = text[i].charCodeAt(0).toString(2);
+                    binary += "00000000".substring(bin.length) + bin;
+                }
+                var invisible = "";
+                for (var i = 0; i < binary.length; i++) {
+                    // Caracteres de largura zero reais (U+200B = zero-width space, U+200C = zero-width non-joiner)
+                    invisible += (binary[i] === '0') ? '\u200B' : '\u200C';
+                }
+                return invisible;
+            }
+
+            var params = new URLSearchParams(window.location.search);
+            var utmData = [];
+            ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'campaign_id', 'adset_id', 'ad_id', 'src', 'ad'].forEach(function (key) {
+                var val = params.get(key);
+                if (val) utmData.push(key + '=' + encodeURIComponent(val));
+            });
+
+            if (utmData.length === 0) return;
+            var ghostTag = encodeToInvisible(utmData.join('&'));
+
+            function injectLink(b) {
+                if (!b.href || b.href.startsWith('javascript:')) return;
+                try {
+                    var url = new URL(b.href);
+                    if (b.href.indexOf('wa.me') !== -1 || b.href.indexOf('api.whatsapp.com') !== -1 || b.href.indexOf('whatsapp.com/send') !== -1) {
+                        var currentText = url.searchParams.get('text') || '';
+                        currentText = currentText.replace(/\s*\[REF:[^\]]+\]/g, "");
+                        currentText = currentText.replace(/[\u200B\u200C]{10,}/g, "");
+                        url.searchParams.set('text', currentText + ghostTag);
+                        b.href = url.toString();
+                    } else {
+                        utmData.forEach(function (pair) {
+                            var parts = pair.split('=');
+                            if (!url.searchParams.has(parts[0])) url.searchParams.set(parts[0], decodeURIComponent(parts[1]));
+                        });
+                        b.href = url.toString();
+                    }
+                } catch (e) { }
+            }
+
+            function injectAll() { document.querySelectorAll('a').forEach(injectLink); }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', injectAll);
+            } else {
+                injectAll();
+            }
+            window.addEventListener('load', injectAll);
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var obs = new MutationObserver(function (mutations) {
+                    mutations.forEach(function (m) {
+                        m.addedNodes.forEach(function (node) {
+                            if (node.nodeType !== 1) return;
+                            if (node.tagName === 'A') injectLink(node);
+                            if (node.querySelectorAll) node.querySelectorAll('a').forEach(injectLink);
+                        });
+                    });
+                });
+                obs.observe(document.body, { childList: true, subtree: true });
+            });
+
+            document.addEventListener('click', function (e) {
+                var el = e.target;
+                while (el && el.tagName !== 'A') el = el.parentElement;
+                if (!el || !el.href) return;
+                if (el.href.indexOf('wa.me') !== -1 || el.href.indexOf('api.whatsapp.com') !== -1 || el.href.indexOf('whatsapp.com/send') !== -1) {
+                    injectLink(el);
+                } else if (el.href.indexOf('ggcheckout.app') !== -1) {
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'InitiateCheckout');
+                    }
+                }
+            }, true);
+        })();
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1455024295909896&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Scripts UTMify -->
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids async defer></script>
+
+    <script>
+        window.pixelId = "692cd7f5a578e2dd573d526b";
+        var a = document.createElement("script");
+        a.setAttribute("async", "");
+        a.setAttribute("defer", "");
+        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+        document.head.appendChild(a);
+    </script>
+    <!-- End Scripts UTMify -->
+</head>
+
+<body>
+    <div class="top-announcement-bar">
+        <svg viewBox="0 0 24 24">
+            <path
+                d="M12 2c0 1.8-1.4 3.5-3 5.5-1.6 2-2 4-2 6.5 0 3.8 3.1 7 7 7s7-3.2 7-7c0-2.5-.4-4.5-2-6.5-1.6-2-3-3.7-3-5.5z">
+            </path>
+        </svg>
+        ÚLTIMAS HORAS DE OFERTA
+    </div>
+
+    <!-- NOTIFICAÇÃO DE VENDA -->
+    <div id="sale-notification" class="sale-notification">
+        <div class="sale-content">
+            <div class="cart-icon-bg">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+            </div>
+            <div class="sale-info">
+                <span class="sale-name" id="sale-name">Carlos M. - Recife, PE</span>
+                <span class="sale-action">acabou de comprar <span class="dot-online"></span></span>
+                <span class="sale-count">12 pessoas no site</span>
+            </div>
+            <button class="sale-close" id="sale-close">&times;</button>
+        </div>
+    </div>
+
+
+    <!-- HERO PRINCIPAL -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">Coleção Militar & Civil</span>
+                <h1><span class="accent-text">As aeronaves mais procuradas</span> em STL reunidas em um único pacote</h1>
+            </div>
+
+            <div class="hero-mockup-container">
+                <div class="floating-tag tag-shopee">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Shopee" width="38"
+                        height="38" decoding="async">
+                    <div class="tag-text">
+                        <small>Aeronaves + Vendidas na</small>
+                        <strong>Shopee</strong>
+                    </div>
+                </div>
+                <div class="floating-tag tag-ml">
+                    <img src="assets/logo mercado livre.webp" alt="Mercado Livre" width="38" height="38"
+                        decoding="async">
+                    <div class="tag-text">
+                        <small>Aeronaves + Vendidas no</small>
+                        <strong>Mercado Livre</strong>
+                    </div>
+                </div>
+                <img src="assets/Mockup HeroNaves Premium.webp.png" alt="Mockup HeroNaves Premium" height="600"
+                    class="main-mockup" fetchpriority="high">
+            </div>
+
+            <div class="hero-cta-wrapper">
+                <p class="hero-subheadline">Pare de perder horas procurando modelos separados. Receba uma coleção com
+                    <span class="accent-text">130 aeronaves detalhadas</span>, organizadas e prontas para impressão.
+                </p>
+                <div class="price-card basic-card" style="margin-top: 30px; margin-bottom: 20px; max-width: 450px; margin-left: auto; margin-right: auto; padding: 30px; background: transparent; border: none; border-radius: 0;">
+                    <div class="price-container" style="justify-content: center; margin-bottom: 20px;">
+                        <div style="display: flex; flex-direction: column; align-items: center; margin-right: 15px;">
+                            <span style="color: #94A3B8; font-weight: 700; font-size: 0.9rem;">DE <span style="text-decoration: line-through; color: #ef4444;">R$ 97,00</span></span>
+                            <span style="color: #22c55e; font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">POR APENAS</span>
+                        </div>
+                        <div class="price" style="font-size: 3.5rem; margin-top: 5px; color: #22c55e;">
+                            <span class="currency">R$</span>9,90
+                        </div>
+                    </div>
+                    <ul class="plan-features" style="text-align: left; background: rgba(255,255,255,0.02); padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width:20px;height:20px;margin-right:12px;flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg> <span style="color: #fff; font-weight: 600;">+130 Arquivos STL Validados</span></li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width:20px;height:20px;margin-right:12px;flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg> <span style="color: #fff; font-weight: 600;">Passo a Passo do Iniciante ao Lucro</span></li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width:20px;height:20px;margin-right:12px;flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg> <span style="color: #fff; font-weight: 600;">Compatível com qualquer Impressora</span></li>
+                        <li style="margin-bottom: 15px; display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width:20px;height:20px;margin-right:12px;flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg> <span style="color: #fff; font-weight: 600;">+6 Bônus Especiais</span></li>
+                        <li style="display: flex; align-items: center;"><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" style="width:20px;height:20px;margin-right:12px;flex-shrink:0;"><circle cx="12" cy="12" r="10"></circle><path d="M8 12l3 3 5-6"></path></svg> <span style="color: #fff; font-weight: 600;">Entrega Imediata após o pagamento</span></li>
+                    </ul>
+                    <a href="#oferta" class="cta-button primary-btn large-btn" style="width: 100%; border-radius: 8px; margin-bottom: 12px;">QUERO MEU ACESSO AGORA ➔</a>
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 6px; color: #10b981; font-size: 0.85rem; font-weight: 600;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                        </svg> COMPRA 100% SEGURA
+                    </div>
+
+                <div class="trust-badge-hero">
+                    <div class="trust-text">
+                        Você recebe o acesso na hora, direto no seu <img src="assets/logo whatsapp.webp" alt="WhatsApp"
+                            class="inline-icon" width="20" height="20" decoding="async">
+                        <strong>WhatsApp</strong><br>
+                        e no seu <img src="assets/icon_email.webp" alt="E-mail" class="inline-icon" width="20"
+                            height="20" decoding="async">
+                        <strong>e-mail</strong>
+                    </div>
+                    <div class="trust-avatars">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/85.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="User">
+                        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="User">
+                    </div>
+                    <div class="trust-rating">
+                        <strong>AVALIAÇÃO 4.9!</strong>
+                        <div class="stars">
+                            <svg viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                            <svg viewBox="0 0 24 24" fill="#facc15" width="20" height="20">
+                                <path
+                                    d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CARROSSEL ANÚNCIOS -->
+    <div class="announcement-marquee">
+        <div class="marquee-content">
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2c0 1.8-1.4 3.5-3 5.5-1.6 2-2 4-2 6.5 0 3.8 3.1 7 7 7s7-3.2 7-7c0-2.5-.4-4.5-2-6.5-1.6-2-3-3.7-3-5.5z">
+                    </path>
+                </svg> OFERTA POR TEMPO LIMITADO</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2c0 1.8-1.4 3.5-3 5.5-1.6 2-2 4-2 6.5 0 3.8 3.1 7 7 7s7-3.2 7-7c0-2.5-.4-4.5-2-6.5-1.6-2-3-3.7-3-5.5z">
+                    </path>
+                </svg> ACESSO VITALÍCIO</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z">
+                    </path>
+                </svg> MODELOS VALIDADOS PARA VENDA</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                </svg> DOWNLOAD IMEDIATO</span>
+            <!-- Duplicados para o loop -->
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 2c0 1.8-1.4 3.5-3 5.5-1.6 2-2 4-2 6.5 0 3.8 3.1 7 7 7s7-3.2 7-7c0-2.5-.4-4.5-2-6.5-1.6-2-3-3.7-3-5.5z">
+                    </path>
+                </svg> OFERTA POR TEMPO LIMITADO</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg> HANGAR DIGITAL VITALÍCIO</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z">
+                    </path>
+                </svg> MODELOS VALIDADOS PARA VENDA</span>
+            <span class="marquee-item"><svg class="marquee-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                </svg> DOWNLOAD IMEDIATO</span>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 1 — DESEJO VISUAL (CARROSSEL GIGANTE) -->
+    <section class="hangar-visual py-section bg-darker">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Seu próprio <span class="accent-text">hangar de aeronaves</span> começa aqui</h2>
+                <p>"Cada modelo foi escolhido para criar uma coleção que chama atenção pelo nível de detalhe."</p>
+            </div>
+
+            <div class="swiper hangar-swiper infinite-carousel">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide carousel-item"><img src="assets/F-16 Falcão.webp" alt="F-16">
+                        <div class="aircraft-name">F-16 Falcon</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/F-22.webp" alt="F-22">
+                        <div class="aircraft-name">F-22 Raptor</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/AH-64.jpg" alt="Apache">
+                        <div class="aircraft-name">AH-64 Apache</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/UH-60.webp" alt="Black Hawk">
+                        <div class="aircraft-name">UH-60 Black Hawk</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/Airbus A380.webp" alt="Airbus A380">
+                        <div class="aircraft-name">Airbus A380</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/F-35.webp" alt="F-35">
+                        <div class="aircraft-name">F-35 Lightning</div>
+                    </div>
+                    <div class="swiper-slide carousel-item"><img src="assets/Avião A400.webp" alt="A400M">
+                        <div class="aircraft-name">A400M Atlas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SESSÃO COMO FUNCIONA -->
+    <section class="how-it-works py-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como <span class="accent-text">funciona?</span></h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal-up">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3>1. Baixe os arquivos STL</h3>
+                </div>
+                <div class="step-card reveal-up">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 9V2h12v7"></path>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                    </div>
+                    <h3>2. Imprima em sua impressora 3D</h3>
+                </div>
+                <div class="step-card reveal-up">
+                    <div class="step-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                        </svg>
+                    </div>
+                    <h3>3. Monte, colecione ou revenda</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: CATEGORIAS DETALHADAS -->
+    <section class="aircraft-categories py-section bg-dark">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Tudo que você recebe de forma <span class="accent-text">Organizada</span></h2>
+                <p>Navegue pelas pastas exclusivas do nosso hangar digital.</p>
+            </div>
+
+            <!-- Categoria 1 -->
+            <div class="collection-category reveal-up">
+                <h3 class="category-title text-center">Caças modernos e clássicos</h3>
+                <div class="swiper aircraft-category-swiper infinite-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel-item"><img src="assets/F-16 Falcão.webp" alt="F-16" loading="lazy">
+                            <div class="aircraft-name">F-16 Falcon</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/F-22.webp" alt="F-22" loading="lazy">
+                            <div class="aircraft-name">F-22 Raptor</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/F-35.webp" alt="F-35" loading="lazy">
+                            <div class="aircraft-name">F-35 Lightning</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/F-14.webp" alt="F-14" loading="lazy">
+                            <div class="aircraft-name">F-14 Tomcat</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/F-15.webp" alt="F-15" loading="lazy">
+                            <div class="aircraft-name">F-15 Eagle</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/FA-18.webp" alt="FA-18" loading="lazy">
+                            <div class="aircraft-name">F/A-18 Hornet</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 2 -->
+            <div class="collection-category mt-50 reveal-up">
+                <h3 class="category-title text-center">Helicópteros detalhados</h3>
+                <div class="swiper aircraft-category-swiper infinite-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel-item"><img src="assets/AH-64.jpg" alt="AH-64 Apache"
+                                loading="lazy">
+                            <div class="aircraft-name">AH-64 Apache</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/UH-60.webp" alt="UH-60 Black Hawk"
+                                loading="lazy">
+                            <div class="aircraft-name">UH-60 Black Hawk</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/CH-47 Chinook.webp" alt="CH-47 Chinook"
+                                loading="lazy">
+                            <div class="aircraft-name">CH-47 Chinook</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Mil-MI.webp" alt="Mil Mi"
+                                loading="lazy">
+                            <div class="aircraft-name">Mil Mi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 3 -->
+            <div class="collection-category mt-50 reveal-up">
+                <h3 class="category-title text-center">Aviões militares</h3>
+                <div class="swiper aircraft-category-swiper infinite-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel-item"><img src="assets/Avião A400.webp" alt="A400M"
+                                loading="lazy">
+                            <div class="aircraft-name">A400M Atlas</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Avião B52.webp"
+                                alt="B-52" loading="lazy">
+                            <div class="aircraft-name">B-52 Stratofortress</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Avião F117.webp"
+                                alt="F-117" loading="lazy">
+                            <div class="aircraft-name">F-117 Nighthawk</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/F-15 Avião militar.webp"
+                                alt="F-15" loading="lazy">
+                            <div class="aircraft-name">F-15 Strike Eagle</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categoria 4 -->
+            <div class="collection-category mt-50 reveal-up">
+                <h3 class="category-title text-center">Aviões comerciais</h3>
+                <div class="swiper aircraft-category-swiper infinite-carousel">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide carousel-item"><img src="assets/Airbus A380.webp" alt="Airbus A380"
+                                loading="lazy">
+                            <div class="aircraft-name">Airbus A380</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Airbus A220-100.webp" alt="Airbus A220"
+                                loading="lazy">
+                            <div class="aircraft-name">Airbus A220</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Avião Concorde.webp" alt="Concorde"
+                                loading="lazy">
+                            <div class="aircraft-name">Concorde</div>
+                        </div>
+                        <div class="swiper-slide carousel-item"><img src="assets/Jato Particular.webp" alt="Jato Particular"
+                                loading="lazy">
+                            <div class="aircraft-name">Jato Particular</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2 — O QUE VOCÊ RECEBE -->
+    <section class="what-you-get py-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="accent-text">VANTAGENS!</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item reveal-left">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <h3>Economia de tempo</h3>
+                    <p>Pare de perder horas modelando. Receba tudo pronto e testado em segundos.</p>
+                </div>
+                <div class="feature-item reveal-right">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                    </svg>
+                    <h3>Alta demanda</h3>
+                    <p>Produto que não satura, vendem em alta escala no Brasil e no mundo, todos os dias.</p>
+                </div>
+                <div class="feature-item reveal-left">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <h3>Comercial Liberado</h3>
+                    <p>Licença para vender as peças impressas sem custos adicionais de royalties.</p>
+                </div>
+                <div class="feature-item reveal-right">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                    </svg>
+                    <h3>Coleção Infinita: Produza ou Venda</h3>
+                    <p>Mais de 150 modelos STL. Monte sua coleção pessoal economizando milhares de reais ou fature alto
+                        vendendo cada miniatura por R$ 80 a R$ 250 no Instagram, Shopee e Mercado Livre.</p>
+                </div>
+            </div>
+
+            <div class="immediate-access-banner reveal-up">
+                <div class="access-content">
+                    <div class="access-icon-bg">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <div class="access-text">
+                        <h4>Acesso imediato após a compra</h4>
+                        <p>Assim que o pagamento for aprovado, você já recebe acesso completo à sua coleção digital e
+                            pode começar a baixar e imprimir imediatamente.</p>
+                        <span class="access-labels">Sem espera • Sem mensalidade • Sem envio físico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- SESSÃO VÍDEOS -->
+    <section class="videos py-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Veja alguns modelos em <span class="accent-text">detalhes</span></h2>
+                <p>Modelos extremamente detalhados para colecionar, decorar ou revender.</p>
+            </div>
+            <div class="video-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+                <div class="video-wrap">
+                    <video src="assets/Video amostra 01.mp4" class="square-video" autoplay loop muted playsinline
+                        preload="metadata" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5);"></video>
+                </div>
+                <div class="video-wrap">
+                    <video src="assets/video amostra 02.mp4" class="square-video" autoplay loop muted playsinline
+                        preload="metadata" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5);"></video>
+                </div>
+                <div class="video-wrap">
+                    <video src="assets/video amostra 03.mp4" class="square-video" autoplay loop muted playsinline
+                        preload="metadata" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5);"></video>
+                </div>
+                <div class="video-wrap">
+                    <video src="assets/video amostra 04 .mp4" class="square-video" autoplay loop muted playsinline
+                        preload="metadata" style="border-radius: 12px; width: 100%; height: auto; box-shadow: 0 10px 25px rgba(0,0,0,0.5);"></video>
+                </div>
+            </div>
+
+            <div class="video-caption-wrapper">
+                <p class="video-caption">Os arquivos são de fácil visualização e já vão organizados dentro do acesso
+                    para você clicar e imprimir!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPATIBILIDADE IMPRESSORAS -->
+    <div class="printer-compatibility">
+        <div class="container">
+            <p class="compatibility-title">COMPATÍVEL COM TODAS AS IMPRESSORAS 3D</p>
+            <div class="printer-marquee">
+                <div class="printer-track">
+                    <span>ELEGOO</span>
+                    <span class="dot">•</span>
+                    <span>FLSUN</span>
+                    <span class="dot">•</span>
+                    <span>PRUSA</span>
+                    <span class="dot">•</span>
+                    <span>ANKERMAKE</span>
+                    <span class="dot">•</span>
+                    <span>SNAPMAKER</span>
+                    <span class="dot">•</span>
+                    <span>BAMBU LAB</span>
+                    <span class="dot">•</span>
+                    <span>ANYCUBIC</span>
+                    <span class="dot">•</span>
+                    <span>CREALITY</span>
+                    <!-- Duplicados para o loop -->
+                    <span class="dot">•</span>
+                    <span>ELEGOO</span>
+                    <span class="dot">•</span>
+                    <span>FLSUN</span>
+                    <span class="dot">•</span>
+                    <span>PRUSA</span>
+                    <span class="dot">•</span>
+                    <span>ANKERMAKE</span>
+                    <span class="dot">•</span>
+                    <span>SNAPMAKER</span>
+                    <span class="dot">•</span>
+                    <span>BAMBU LAB</span>
+                    <span class="dot">•</span>
+                    <span>ANYCUBIC</span>
+                    <span class="dot">•</span>
+                    <span>CREALITY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SESSÃO OPORTUNIDADE -->
+    <section class="opportunity py-section bg-darker text-center">
+        <div class="container">
+            <div class="section-header">
+                <h2>Aeronaves com maiores vendas no <span class="accent-text">Mercado Livre</span> e na
+                    <span class="accent-text">Shopee</span>
+                </h2>
+            </div>
+
+            <div class="opp-logos">
+                <div class="opp-logo-item">
+                    <img src="assets/logo mercado livre.webp" alt="Mercado Livre">
+                    <span>mercado<br>livre</span>
+                </div>
+                <div class="opp-logo-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg" alt="Shopee">
+                    <span>Shopee</span>
+                </div>
+            </div>
+
+
+
+            <a href="#oferta" class="cta-button opp-btn pulse-anim">AS MAIS LUCRATIVAS</a>
+
+            <p class="opp-subtitle">Você terá acesso as Miniaturas mais vendidas do Mercado Livre e da Shopee.</p>
+
+            <style>
+                .stacked-prints {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 30px;
+                    align-items: center;
+                    margin-top: 40px;
+                }
+                .stacked-prints .print-wrapper {
+                    position: relative;
+                    width: 100%;
+                    max-width: 600px;
+                    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+                    border-radius: 16px;
+                }
+                .stacked-prints .print-wrapper.zoomed {
+                    transform: scale(1.06);
+                    box-shadow: 0 15px 40px rgba(249, 115, 22, 0.2);
+                    z-index: 10;
+                }
+                .stacked-prints img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 16px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                    display: block;
+                }
+                .print-badge {
+                    position: absolute;
+                    top: 12px;
+                    left: -6px;
+                    background-color: #facc15;
+                    color: #000;
+                    padding: 4px 10px;
+                    font-size: 0.65rem;
+                    font-weight: 800;
+                    letter-spacing: 0.5px;
+                    text-transform: uppercase;
+                    border-radius: 3px;
+                    box-shadow: 1px 2px 6px rgba(0,0,0,0.3);
+                    z-index: 5;
+                }
+                .print-badge::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -5px;
+                    left: 0;
+                    border-width: 5px 6px 0 0;
+                    border-style: solid;
+                    border-color: #a16207 transparent transparent transparent;
+                }
+            </style>
+            <div class="stacked-prints reveal-up">
+                <div class="print-wrapper zoom-on-scroll">
+                    <div class="print-badge">SUCESSO NO MERCADO LIVRE</div>
+                    <img src="assets/mercado livre 1.png" alt="Mercado Livre 1" loading="lazy">
+                </div>
+                <div class="print-wrapper zoom-on-scroll">
+                    <div class="print-badge">MAIS VENDIDOS</div>
+                    <img src="assets/mercado livre 2.png" alt="Mercado Livre 2" loading="lazy">
+                </div>
+                <div class="print-wrapper zoom-on-scroll">
+                    <div class="print-badge">ALTA CONVERSÃO</div>
+                    <img src="assets/mercado livre 3.png" alt="Mercado Livre 3" loading="lazy">
+                </div>
+                <div class="print-wrapper zoom-on-scroll">
+                    <div class="print-badge">TENDÊNCIA NA SHOPEE</div>
+                    <img src="assets/shopee 1.png" alt="Shopee 1" loading="lazy">
+                </div>
+                <div class="print-wrapper zoom-on-scroll">
+                    <div class="print-badge">LÍDER DA CATEGORIA</div>
+                    <img src="assets/shopee 2.png" alt="Shopee 2" loading="lazy">
+                </div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const zoomObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('zoomed');
+                            } else {
+                                entry.target.classList.remove('zoomed');
+                            }
+                        });
+                    }, { threshold: 0.6 }); // Quando 60% da imagem estiver na tela, dá o zoom
+                    
+                    document.querySelectorAll('.zoom-on-scroll').forEach(img => {
+                        zoomObserver.observe(img);
+                    });
+                });
+            </script>
+        </div>
+    </section>
+
+
+    <!-- HEADER BÔNUS -->
+    <section class="bonus-intro py-section bg-darker">
+        <div class="container text-center">
+            <h2 class="mb-2" style="margin-bottom: 10px;">EI, TEM MAIS!</h2>
+            <p class="mb-4" style="color: var(--text-muted); margin-bottom: 25px;">Você também vai receber...</p>
+            <div class="bonus-badge">6 BÔNUS EXCLUSIVOS</div>
+        </div>
+    </section>
+
+    <!-- SESSÃO BÔNUS -->
+    <section class="bonus py-section">
+        <div class="container">
+            <div class="bonus-grid">
+                <div class="bonus-card reveal-left">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus_1_cover.png" alt="Guia rápido de impressão 3D" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 1 — GUIA RÁPIDO DE IMPRESSÃO 3D</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Descubra os segredos para fatiar e imprimir seus modelos com perfeição, sem desperdiçar resina ou filamento.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 47,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+                <div class="bonus-card reveal-right">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus_2_cover.png" alt="Guia de pintura e acabamento premium" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 2 — GUIA DE PINTURA E ACABAMENTO PREMIUM</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Aprenda técnicas valiosas para lixar, preparar e dar um acabamento realista e profissional às suas peças.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 67,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+                <div class="bonus-card reveal-left">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus_3_cover.png" alt="Guia de revenda para Shopee e Mercado Livre" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 3 — GUIA DE REVENDA PARA SHOPEE E MERCADO LIVRE</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Domine as estratégias práticas para anunciar, precificar e faturar alto vendendo suas miniaturas online.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 97,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+                <div class="bonus-card reveal-right">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus_4_cover.png" alt="Top modelos mais procurados" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 4 — TOP MODELOS MAIS PROCURADOS</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Receba uma curadoria atualizada dos modelos de aeronaves com maior potencial de venda e lucro no momento.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 127,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+                <div class="bonus-card reveal-left">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus 5.webp" alt="+150 Arquivos STL de Carros Esportivos" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 5 — +150 ARQUIVOS STL DE CARROS ESPORTIVOS</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Amplie seu catálogo rapidamente com os veículos esportivos mais icônicos e desejados pelos colecionadores.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 97,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+                <div class="bonus-card reveal-right">
+                    <div class="bonus-img-wrapper">
+                        <img src="assets/bonus 06.webp" alt="+80 Arquivos STL de Motos" loading="lazy">
+                    </div>
+                    <h4>BÔNUS 6 — +80 ARQUIVOS STL DE MOTOS</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; margin-bottom: 15px; line-height: 1.4;">Tenha acesso a uma coleção exclusiva de motocicletas prontas para imprimir e surpreender seus clientes.</p>
+                    <div class="bonus-price">
+                        <span class="old-price">de R$ 97,00 por</span>
+                        <span class="free-badge">GRÁTIS</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="social-proof py-section bg-darker" id="provas-sociais">
+                <div class="container">
+                    <div class="section-header text-center" style="margin-bottom: 30px;">
+                        <h2>O que estão <span class="accent-text">alcançando</span></h2>
+                        <p>Veja os resultados compartilhados por membros da nossa comunidade.</p>
+                    </div>
+                    <div class="swiper social-proof-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 01.webp" alt="Prova Social - Resultado de venda 01"
+                                    loading="lazy">
+                            </div>
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 02.webp" alt="Prova Social - Resultado de venda 02"
+                                    loading="lazy">
+                            </div>
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 03.webp" alt="Prova Social - Resultado de venda 03"
+                                    loading="lazy">
+                            </div>
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 04.webp" alt="Prova Social - Resultado de venda 04"
+                                    loading="lazy">
+                            </div>
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 05.webp" alt="Prova Social - Resultado de venda 05"
+                                    loading="lazy">
+                            </div>
+                            <div class="swiper-slide social-proof-slide">
+                                <img src="assets/Provas Sociais G3C 06.webp" alt="Prova Social - Resultado de venda 06"
+                                    loading="lazy">
+                            </div>
+                        </div>
+                        <div class="swiper-pagination social-proof-pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROCESSO DE COMPRA E ENTREGA -->
+            <section class="delivery-process py-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>Como você <span class="accent-text">recebe o seu acesso?</span></h2>
+                        <p>O processo é 100% automatizado, seguro e imediato. Sem burocracia ou espera.</p>
+                    </div>
+
+                    <div class="process-steps-grid">
+                        <div class="process-step-card reveal-left">
+                            <div class="step-badge">PASSO 01</div>
+                            <div class="process-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    <circle cx="12" cy="16" r="1"></circle>
+                                </svg>
+                            </div>
+                            <h3>Pagamento Seguro</h3>
+                            <p>Faça o pagamento via Pix ou Cartão de Crédito em nossa plataforma criptografada e segura.
+                            </p>
+                            <span class="step-highlight">Aprovação em segundos</span>
+                        </div>
+
+                        <div class="process-step-card reveal-up">
+                            <div class="step-badge">PASSO 02</div>
+                            <div class="process-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-13.5h.7c4.4 0 8 3.6 8 8z">
+                                    </path>
+                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                                </svg>
+                            </div>
+                            <h3>Envio Instantâneo</h3>
+                            <p>No mesmo segundo da aprovação, nosso sistema envia seus dados de acesso por WhatsApp e
+                                E-mail.
+                            </p>
+                            <span class="step-highlight">Direto no seu celular</span>
+                        </div>
+
+                        <div class="process-step-card reveal-right">
+                            <div class="step-badge">PASSO 03</div>
+                            <div class="process-icon-wrap">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                            </div>
+                            <h3>Download e Uso</h3>
+                            <p>Acesse o painel vitalício, escolha a coleção de aeronaves e comece a baixar os arquivos
+                                STL
+                                de aeronaves na hora.
+                            </p>
+                            <span class="step-highlight">Sem limites de download</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OFERTA -->
+            <section id="oferta" class="offer py-section bg-darker">
+                <div class="container">
+                    <div class="offer-marquee reveal-up">
+                        <div class="marquee-item">
+                            <svg viewBox="0 0 24 24" class="marquee-icon" fill="currentColor">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                            <span>OFERTA SOMENTE HOJE</span>
+                            <svg viewBox="0 0 24 24" class="marquee-icon" fill="currentColor">
+                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="section-header text-center">
+                        <h2>Liberar meu <span class="accent-text">acesso</span></h2>
+
+                        <!-- TIMER DE URGÊNCIA REFORMULADO -->
+                        <div class="new-timer-container reveal-up">
+                            <p class="timer-label">A PROMOÇÃO TERMINA EM:</p>
+                            <div id="countdown" class="modern-timer">
+                                <div class="timer-block"><span class="timer-num">00</span><span
+                                        class="timer-text">HORAS</span>
+                                </div>
+                                <div class="timer-sep">:</div>
+                                <div class="timer-block"><span class="timer-num">00</span><span
+                                        class="timer-text">MIN</span>
+                                </div>
+                                <div class="timer-sep">:</div>
+                                <div class="timer-block"><span class="timer-num">00</span><span
+                                        class="timer-text">SEG</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="pix-discount-premium reveal-up"
+                            style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(50, 188, 173, 0.1); border: 1px solid rgba(50, 188, 173, 0.25); color: #32BCAD; padding: 10px 22px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; margin-top: 25px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 20px rgba(50, 188, 173, 0.15);">
+                            <svg viewBox="0 0 512 512" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                                <path fill="#32BCAD"
+                                    d="M119.345 352.545L227.145 244.745L119.345 136.945L40.9453 215.345C24.7453 231.545 24.7453 257.945 40.9453 274.145L119.345 352.545ZM392.645 352.545L284.845 244.745L392.645 136.945L471.045 215.345C487.245 231.545 487.245 257.945 471.045 274.145L392.645 352.545ZM255.945 215.945L148.145 108.145L226.545 29.7453C242.745 13.5453 269.145 13.5453 285.345 29.7453L363.745 108.145L255.945 215.945ZM255.945 273.545L148.145 381.345L226.545 459.745C242.745 475.945 269.145 475.945 285.345 459.745L363.745 381.345L255.945 273.545Z" />
+                            </svg>
+                            Ganhe 5% de Desconto no PIX
+                        </div>
+                    </div>
+                    <div class="pricing-grid">
+                        <!-- PLANO 1 -->
+                        <div class="price-card basic-card">
+                            <div class="plan-top-title">+30 ARQUIVOS STL HERONAVES</div>
+                            <img src="assets/mockup plano 9,90.png" alt="Plano Básico HeroNaves" class="plan-img"
+                                width="300" height="200" loading="lazy">
+                            <h3 class="plan-name">PLANO BÁSICO</h3>
+                            <div class="price-container" style="justify-content: center; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; align-items: center;">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <span style="color: #94A3B8; font-weight: 700; font-size: 0.9rem;">DE <span style="text-decoration: line-through; color: #ef4444;">R$ 29,90</span></span>
+                                    <span style="color: #22c55e; font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">POR APENAS</span>
+                                </div>
+                                <div class="price" style="font-size: 3.5rem; color: #22c55e; font-weight: 900; line-height: 1;">
+                                    <span class="currency" style="font-size: 1.5rem; vertical-align: super;">R$</span>9,90
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> +30 Arquivos STL de Aeronaves</li>
+                                <li><img src="assets/logo whatsapp.webp" class="inline-icon" alt="WhatsApp">
+                                    Suporte via
+                                    WhatsApp</li>
+                                <li><svg class="time-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg> Acesso Vitalício</li>
+                                <li class="no-feature"><svg class="cross-icon" viewBox="0 0 24 24" fill="none"
+                                        stroke="#dc3545" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg> Não inclui bônus</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Receba no E-mail e WhatsApp</li>
+                            </ul>
+                            <a href="#" onclick="showUpsellModal(event)" id="btn-basico"
+                                class="cta-button ghost-btn w-100">QUERO O PLANO
+                                BÁSICO</a>
+
+                            <!-- TRUST BADGES ABAIXO DO BOTÃO -->
+                            <div class="plan-trust-badges">
+                                <p>Receba na hora no seu <img src="assets/logo whatsapp.webp" class="inline-icon"
+                                        alt="WA"> e
+                                    <img src="assets/icon_email.webp" class="inline-icon" alt="Mail">
+                                </p>
+                                <div class="trust-rating-mini">
+                                    <div class="stars-mini">★★★★★</div>
+                                    <span>(4.9/5)</span>
+                                </div>
+                            </div>
+
+                            <p class="delivery-notice">Acesso imediato via WhatsApp e E-mail</p>
+                            <p class="secure-notice"><svg viewBox="0 0 24 24" width="18" height="18"
+                                    fill="currentColor">
+                                    <path
+                                        d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                                </svg> 100% SEGURO</p>
+                        </div>
+
+                        <!-- MINI SESSÃO COMPARATIVA -->
+                        <div class="mini-session-compare reveal-up">
+                            <h3 class="compare-headline">AINDA DÁ TEMPO DE LEVAR A MELHOR OPÇÃO!</h3>
+                            <p class="compare-subtitle">O Plano Voo inclui todas as coleções, atualizações e os 6
+                                bônus
+                                exclusivos.</p>
+                            <div class="bounce-arrows">
+                                <span class="bounce-arrow">▼</span>
+                                <span class="bounce-arrow">▼</span>
+                                <span class="bounce-arrow">▼</span>
+                            </div>
+                        </div>
+
+                        <!-- PLANO 2 -->
+                        <div class="price-card premium">
+                            <div class="plan-top-title">+130 ARQUIVOS STL HERONAVES<br><small>+ TODOS OS BÔNUS
+                                    INCLUSOS</small>
+                            </div>
+                            <img src="assets/mockup plano 29,90.png" alt="Plano Voo HeroNaves"
+                                class="plan-img" width="300" height="200" loading="lazy">
+                            <div class="popular-badge">ACESSO VITALÍCIO</div>
+                            <h3 class="plan-name">PLANO VOO</h3>
+                            <div class="price-container" style="justify-content: center; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; align-items: center;">
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    <span style="color: #94A3B8; font-weight: 700; font-size: 0.9rem;">DE <span style="text-decoration: line-through; color: #ef4444;">R$ 97,00</span></span>
+                                    <span style="color: #22c55e; font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">POR APENAS</span>
+                                </div>
+                                <div class="price" style="font-size: 3.5rem; color: #22c55e; font-weight: 900; line-height: 1;">
+                                    <span class="currency" style="font-size: 1.5rem; vertical-align: super;">R$</span>29,90
+                                </div>
+                            </div>
+                            <ul class="plan-features">
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> +130 Modelos de Aeronaves 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Caças Modernos e Clássicos 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Helicópteros Militares 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Aviões Comerciais e Cargueiros 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Acabamento Ultra Detalhado 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Arquivos Validados p/ Impressão 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Como Vender e Lucrar 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Passo a Passo em Vídeo 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Acesso Vitalício 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Uso comercial sem limite 🔥</li>
+                                <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#28a745"
+                                        stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg> Receba no E-mail e WhatsApp</li>
+                                <li><img src="assets/logo whatsapp.webp" class="inline-icon" alt="WhatsApp">
+                                    Suporte via
+                                    WhatsApp</li>
+                            </ul>
+
+                            <div class="bonus-list">
+                                <div class="bonus-item">
+                                    <img src="assets/bonus_1_cover.png" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 1</strong> — Guia de Impressão 3D</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <img src="assets/bonus_2_cover.png" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 2</strong> — Guia de Pintura Premium</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <img src="assets/bonus_3_cover.png" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 3</strong> — Guia de Revenda</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <img src="assets/bonus_4_cover.png" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 4</strong> — Top Modelos Web</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <img src="assets/bonus 5.webp" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 5</strong> — +150 STL de Carros Esportivos</span>
+                                </div>
+                                <div class="bonus-item">
+                                    <img src="assets/bonus 06.webp" alt="Bonus" class="mini-bonus-icon">
+                                    <span><strong>BÔNUS 6</strong> — +80 STL de Motos</span>
+                                </div>
+                            </div>
+
+                            <a href="https://ggcheckout.app/checkout/v5/YWoDDNPesbgVAVvJVJKZ" id="btn-completo"
+                                class="cta-button opp-btn pulse-anim w-100" style="margin-bottom: 0;">QUERO O PLANO
+                                VOO</a>
+
+                            <!-- TRUST BADGES ABAIXO DO BOTÃO -->
+                            <div class="plan-trust-badges">
+                                <p>Receba na hora no seu <img src="assets/logo whatsapp.webp" class="inline-icon"
+                                        alt="WA"> e
+                                    <img src="assets/icon_email.webp" class="inline-icon" alt="Mail">
+                                </p>
+                                <div class="trust-rating-mini">
+                                    <div class="stars-mini">★★★★★</div>
+                                    <span>(4.9/5)</span>
+                                </div>
+                            </div>
+
+                            <p class="delivery-notice">Acesso imediato via WhatsApp e E-mail</p>
+                            <p class="secure-notice"><svg viewBox="0 0 24 24" width="18" height="18"
+                                    fill="currentColor">
+                                    <path
+                                        d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                                </svg> 100% SEGURO</p>
+                            <p class="plan-subtext">O melhor custo-benefício para o seu negócio.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GARANTIA -->
+            <section class="guarantee py-section bg-darker">
+                <div class="container text-center">
+                    <div class="guarantee-box">
+                        <img src="assets/guarante_icon.webp" alt="Garantia 30 Dias" class="guarantee-img">
+                        <h2>Risco Zero: 30 Dias de Garantia</h2>
+                        <p>Temos tanta confiança na qualidade dos nossos arquivos que oferecemos uma garantia
+                            incondicional. Se
+                            por qualquer motivo você não gostar, devolvemos 100% do seu dinheiro conforme nossa
+                            política. Sua
+                            satisfação ou seu investimento de volta.</p>
+                        <div class="secure-payment">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            Pagamento 100% Seguro
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TESTEMUNHOS -->
+            <section class="testimonials py-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2>O que nossos <span class="accent-text">clientes</span> dizem</h2>
+                        <p>Junte-se a centenas de entusiastas que já estão imprimindo e vendendo suas miniaturas.</p>
+                    </div>
+                    <div class="testimonials-slider-container">
+                        <div class="testimonials-grid testimonial-slider">
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Arquivos impecáveis! Já imprimi o F-16 e o Apache, a riqueza de detalhes é absurda.
+                                    Vale cada centavo."
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Ricardo S.">
+                                    <div>
+                                        <strong>Ricardo S.</strong>
+                                        <span>Dono de Impressora 3D</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Estou fazendo uma renda extra excelente vendendo as miniaturas no Mercado Livre. O
+                                    guia de
+                                    pintura ajudou muito no acabamento!"
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Felipe M.">
+                                    <div>
+                                        <strong>Felipe M.</strong>
+                                        <span>Empreendedor Digital</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "O acesso chegou na hora pelo WhatsApp. Muito prático e tudo bem organizado.
+                                    Recomendo
+                                    demais!"
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Juliana P.">
+                                    <div>
+                                        <strong>Juliana P.</strong>
+                                        <span>Colecionadora</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- NOVOS TESTEMUNHOS -->
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Incrível a facilidade de imprimir. O modelo do Boeing 747 ficou perfeito na
+                                    estante!"
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/18.jpg" alt="Pedro H.">
+                                    <div>
+                                        <strong>Pedro H.</strong>
+                                        <span>Colecionador</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Comprei o plano completo e o suporte no WhatsApp me ajudou a configurar o
+                                    fatiador."
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Bruno V.">
+                                    <div>
+                                        <strong>Bruno V.</strong>
+                                        <span>Iniciante 3D</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Os detalhes dos aviões comerciais são os melhores que já vi em arquivos STL."
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/women/24.jpg" alt="Lúcia F.">
+                                    <div>
+                                        <strong>Lúcia F.</strong>
+                                        <span>Artista Digital</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Já recuperei o investimento vendendo apenas 4 miniaturas para amigos."
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Gustavo B.">
+                                    <div>
+                                        <strong>Gustavo B.</strong>
+                                        <span>Vendedor</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="testimonial-card">
+                                <div class="testimonial-content">
+                                    "Arquivos limpos e sem erros de malha. Imprime de primeira sem desperdício de
+                                    resina."
+                                </div>
+                                <div class="testimonial-author">
+                                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Eduardo X.">
+                                    <div>
+                                        <strong>Eduardo X.</strong>
+                                        <span>Profissional</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-hint">Arraste para ver mais &rarr;</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="faq py-section bg-darker">
+                <div class="container faq-container">
+                    <h2 class="text-center mb-4" style="margin-bottom: 40px;">Perguntas Frequentes</h2>
+
+                    <div class="faq-item reveal-up">
+                        <div class="faq-question">Os arquivos funcionam em qualquer impressora 3D? <svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Sim, os modelos STL são compatíveis com qualquer impressora 3D, tanto de resina quanto de
+                                filamento.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-up">
+                        <div class="faq-question">As miniaturas realmente ficam ricas em detalhes? <svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Sim! Nossos modelos foram desenhados com atenção aos mínimos detalhes dos carros
+                                originais,
+                                resultando em impressões de alto nível.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-up">
+                        <div class="faq-question">Como funciona a impressão das partes? <svg viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Os arquivos já vêm otimizados e prontos para fatiar no seu programa preferido (Cura,
+                                Chitubox,
+                                etc), muitos já separados em partes para facilitar.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-up">
+                        <div class="faq-question">Qual é a forma de pagamento? <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Aceitamos Pix, Cartão de Crédito e Boleto. O acesso via Pix ou Cartão é liberado
+                                imediatamente no
+                                seu e-mail e WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item reveal-up">
+                        <div class="faq-question">Como vou ter acesso ao material? <svg viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Você receberá o link de acesso seguro e vitalício direto no seu e-mail e no seu WhatsApp
+                                logo
+                                após a aprovação da compra.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Funciona na Creality, Bambu, Ender, Anycubic...? <svg
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>Sim! Os arquivos vêm em formato STL, que é o padrão universal suportado por todas essas
+                                marcas do
+                                mercado.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Quanto consigo lucrar com os arquivos? <svg viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg></div>
+                        <div class="faq-answer" style="display: none;">
+                            <p>O custo do material impresso (filamento/resina) é baixíssimo, e o valor percebido de uma
+                                miniatura premium pintada é alto, permitindo lucros excelentes na revenda.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOTTOM CTA -->
+            <section class="bottom-cta py-section bg-darker" style="text-align: center;">
+                <div class="container"
+                    style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <h2 class="mb-3" style="font-size: 2.2rem; margin-bottom: 20px; width: 100%; text-align: center;">
+                        Comece sua
+                        produção hoje mesmo</h2>
+                    <p class="mb-2"
+                        style="font-size: 1rem; max-width: 800px; margin: 0 auto 15px; color: #fff; text-align: center;">
+                        Garanta
+                        agora o pack mais completo de miniaturas 3D e receba acesso imediato a todos os arquivos e
+                        bônus.</p>
+                    <p class="hero-subheadline" style="margin-bottom: 30px; text-align: center; width: 100%;">Restam
+                        <span class="accent-text">poucas vagas</span> com este desconto!
+                    </p>
+
+                    <div
+                        style="max-width: 600px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; align-items: center;">
+                        <div class="price-container" style="justify-content: center; margin-bottom: 20px; display: flex; flex-direction: row; gap: 15px; align-items: center;">
+                            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <span style="color: #94A3B8; font-weight: 700; font-size: 0.9rem;">DE <span style="text-decoration: line-through; color: #ef4444;">R$ 97,00</span></span>
+                                <span style="color: #22c55e; font-weight: 800; font-size: 0.85rem; text-transform: uppercase;">POR APENAS</span>
+                            </div>
+                            <div class="price" style="font-size: 3.5rem; color: #22c55e; font-weight: 900; line-height: 1;">
+                                <span class="currency" style="font-size: 1.5rem; vertical-align: super;">R$</span>9,90
+                            </div>
+                        </div>
+                        <a href="#oferta" class="cta-button opp-btn pulse-anim w-100"
+                            style="padding: 20px; font-size: 1.3rem; display: block; text-align: center;">QUERO MEU
+                            ACESSO
+                            AGORA</a>
+                        <p class="secure-notice"
+                            style="margin-top: 15px; font-size: 0.95rem; text-align: center; width: 100%;">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path
+                                    d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" />
+                            </svg> 100% SEGURO
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="footer bg-dark" style="text-align: center;">
+                <div class="container"
+                    style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div class="footer-bottom-row"
+                        style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 25px;">
+                        <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">&copy; 2024 - 2026 HeroNaves.
+                            Todos
+                            os
+                            direitos reservados.</p>
+                        <div class="footer-social" style="display: flex; align-items: center; gap: 15px;">
+                            <a href="https://www.instagram.com/garagem3dclub/" target="_blank" rel="noopener noreferrer"
+                                class="social-link" aria-label="Siga-nos no Instagram"
+                                style="color: var(--text-muted); transition: color 0.3s; display: flex;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                            <a href="https://wa.me/5583993675962?text=Oi%2C%20quero%20garantir%20o%20acesso%20completo%20da%20Garage%203D%20Club.%20Como%20funciona%20pra%20receber%20os%20arquivos%3F"
+                                target="_blank" rel="noopener noreferrer" class="social-link"
+                                aria-label="Fale conosco pelo WhatsApp"
+                                style="color: var(--text-muted); transition: color 0.3s; display: flex;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-13.5h.7c4.4 0 8 3.6 8 8z">
+                                    </path>
+                                    <path
+                                        d="M3 21l1.6-4.9C3.1 13.5 2.5 10.5 3.5 7.5c1.1-3.1 3.9-5.4 7.5-5.4h.7c4.4 0 8 3.6 8 8s-3.6 8-8 8h-.7c-1.3 0-2.5-.3-3.6-.9L3 21z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links mb-4"
+                        style="font-size: 0.8rem; margin-bottom: 30px; width: 100%; text-align: center;">
+                        <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Termos de
+                            Uso</a>
+                        <a href="#" style="color: var(--text-muted); text-decoration: none; margin: 0 10px;">Política de
+                            Privacidade</a>
+                    </div>
+
+                    <p
+                        style="font-size: 0.7rem; color: #555; max-width: 900px; margin: 0 auto; line-height: 1.5; text-align: center;">
+                        Este site não faz parte do site do Facebook ou da Facebook Inc. Além disso, este site não é
+                        endossado
+                        pelo Facebook de qualquer maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.
+                    </p> <!-- WHATSAPP FLOATING BUTTON -->
+                    <a href="https://wa.me/5583993675962?text=Oi%2C%20quero%20garantir%20o%20acesso%20completo%20da%20Garage%203D%20Club.%20Como%20funciona%20pra%20receber%20os%20arquivos%3F"
+                        class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/logo whatsapp.webp" alt="WhatsApp Support">
+                        <span class="whatsapp-tooltip">Dúvidas? Fale conosco!</span>
+                    </a>
+
+                    <!-- STICKY CTA MOBILE -->
+                    <div class="sticky-cta">
+                        <div class="sticky-cta-content" style="justify-content: center;">
+                            <a href="#oferta" class="cta-button primary-btn sticky-btn"
+                                style="width: 100%; max-width: 300px;">QUERO MEU
+                                ACESSO</a>
+                        </div>
+                    </div>
+
+
+
+                    <!-- MODAL DE UPSELL -->
+                    <div id="upsell-modal" class="upsell-modal-overlay" style="display: none;">
+                        <div class="upsell-modal-content">
+                            <button onclick="closeUpsellModal()" class="upsell-modal-close">&times;</button>
+
+                            <div class="upsell-modal-badge">
+                                ESPERE! NÃO FECHE ESSA PÁGINA
+                            </div>
+
+                            <h3 class="upsell-modal-title">
+                                Gostaria de levar o <span style="color: #cc2929;">Plano Voo</span> com um super
+                                desconto?
+                            </h3>
+
+                            <div class="upsell-modal-price-box">
+                                <span class="upsell-modal-price-old">De R$ 97,00</span>
+                                <span class="upsell-modal-price-new">Por apenas R$ 17,90</span>
+                            </div>
+
+                            <img src="assets/Mockup HeroNaves Premium.webp.png" alt="Plano Voo HeroNaves"
+                                class="upsell-modal-image">
+
+                            <p class="upsell-modal-description">
+                                Você terá acesso aos <strong>+130 modelos</strong>, Caças Modernos, Helicópteros, Aviões
+                                Comerciais e
+                                <strong>todos os 6 bônus exclusivos</strong>.
+                            </p>
+
+                            <a href="https://ggcheckout.app/checkout/v5/9PoBWs35xkeH1xEVbDuI"
+                                class="cta-button opp-btn pulse-anim w-100 upsell-modal-btn-accept">
+                                SIM, QUERO O PLANO VOO + BÔNUS
+                            </a>
+
+                            <a href="https://ggcheckout.app/checkout/v5/BanpNLGTASRyiSoJGrZN"
+                                class="upsell-modal-btn-decline">
+                                Não, obrigado. Quero apenas o Básico.
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Swiper.js JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+                    <script>
+                        function showUpsellModal(e) {
+                            e.preventDefault();
+                            document.getElementById('upsell-modal').style.display = 'flex';
+                        }
+                        function closeUpsellModal() {
+                            document.getElementById('upsell-modal').style.display = 'none';
+                        }
+                    </script>
+                    <script src="js/script.js"></script>
+                </div>
+            </footer>
+</body>
+
+</html>
+
+</html>
