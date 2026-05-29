@@ -1198,6 +1198,45 @@
                             <span class="step-highlight">Sem limites de download</span>
                         </div>
                     </div>
+
+                    <!-- VÍDEO DE ACESSO (ADICIONADO) -->
+                    <div class="video-how-it-works reveal-up" style="margin-top: 70px; text-align: center;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 12px; color: #fff;">Veja como é simples acessar seus arquivos</h3>
+                        <p style="color: #a0aec0; margin-bottom: 35px; font-size: 1.05rem; max-width: 600px; margin-left: auto; margin-right: auto;">Assista ao vídeo abaixo e entenda exatamente como você receberá e acessará seus arquivos imediatamente após o pagamento.</p>
+                        
+                        <div class="video-container" style="position: relative; margin: 0 auto; max-width: 320px; width: 100%; border-radius: 18px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.6); border: 2px solid #2d3748;">
+                            <video id="access-video" src="assets/video_acesso.mov" playsinline preload="metadata" style="width: 100%; height: auto; display: block; border-radius: 16px; object-fit: cover;"></video>
+                            
+                            <button id="access-video-btn" aria-label="Play Video" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #F59E0B; border: none; border-radius: 50%; width: 75px; height: 75px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 25px rgba(245, 158, 11, 0.6); z-index: 10; transition: transform 0.2s ease;">
+                                <svg viewBox="0 0 24 24" fill="white" width="35" height="35" style="margin-left: 5px;">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const accVideo = document.getElementById('access-video');
+                            const accBtn = document.getElementById('access-video-btn');
+                            
+                            if(accVideo && accBtn) {
+                                accBtn.addEventListener('click', function() {
+                                    accVideo.play();
+                                    accBtn.style.display = 'none';
+                                    accVideo.setAttribute('controls', 'controls');
+                                });
+                                
+                                accVideo.addEventListener('pause', function() {
+                                    if(!accVideo.seeking) {
+                                        accBtn.style.display = 'flex';
+                                        accVideo.removeAttribute('controls');
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                    <!-- FIM VÍDEO DE ACESSO -->
                 </div>
             </section>
 
@@ -1255,8 +1294,8 @@
                         <!-- PLANO 1 -->
                         <div class="price-card basic-card">
                             <div class="plan-top-title">+30 ARQUIVOS STL HERONAVES</div>
-                            <img src="assets/mockup plano 9,90.png" alt="Plano Básico HeroNaves" class="plan-img"
-                                width="300" height="200" loading="lazy">
+                            <img src="assets/Mockup HeroNaves Premium.webp.png" alt="Plano Básico HeroNaves" class="plan-img"
+                                width="300" height="200" loading="lazy" style="object-fit: contain;">
                             <h3 class="plan-name">PLANO BÁSICO</h3>
                             <div class="price-container" style="justify-content: center; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; align-items: center;">
                                 <div style="display: flex; flex-direction: column; align-items: center;">
@@ -1332,8 +1371,8 @@
                             <div class="plan-top-title">+130 ARQUIVOS STL HERONAVES<br><small>+ TODOS OS BÔNUS
                                     INCLUSOS</small>
                             </div>
-                            <img src="assets/mockup plano 29,90.png" alt="Plano Voo HeroNaves"
-                                class="plan-img" width="300" height="200" loading="lazy">
+                            <img src="assets/Mockup HeroNaves Premium.webp.png" alt="Plano Voo HeroNaves"
+                                class="plan-img" width="300" height="200" loading="lazy" style="object-fit: contain;">
                             <div class="popular-badge">ACESSO VITALÍCIO</div>
                             <h3 class="plan-name">PLANO VOO</h3>
                             <div class="price-container" style="justify-content: center; margin-bottom: 20px; display: flex; flex-direction: column; gap: 5px; align-items: center;">
