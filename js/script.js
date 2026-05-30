@@ -199,14 +199,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Inicialização do Swiper
-    const swiperOptions = {
+    // Inicialização do Swiper base
+    const baseSwiperOptions = {
         loop: true,
         speed: 8000,
-        autoplay: {
-            delay: 0,
-            disableOnInteraction: false,
-        },
         slidesPerView: 'auto',
         spaceBetween: 20,
         freeMode: {
@@ -225,12 +221,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Inicializar todos os carrosséis de aeronaves com o mesmo modelo contínuo
-    const aircraftSwipers = ['.hangar-swiper', '.aircraft-category-swiper'];
-    aircraftSwipers.forEach(selector => {
-        if (document.querySelector(selector)) {
-            new Swiper(selector, swiperOptions);
-        }
+    if (document.querySelector('.hangar-swiper')) {
+        new Swiper('.hangar-swiper', {
+            ...baseSwiperOptions,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+            }
+        });
+    }
+
+    const categorySwipers = document.querySelectorAll('.aircraft-category-swiper');
+    categorySwipers.forEach((swiperEl, index) => {
+        new Swiper(swiperEl, {
+            ...baseSwiperOptions,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false,
+                reverseDirection: index % 2 !== 0 // Alterna a direção a cada carrossel
+            }
+        });
     });
 
     // Carrossel de Provas Sociais
